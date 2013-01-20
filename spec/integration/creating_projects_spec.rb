@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Creating Projects' do
+feature 'Creating Projects', :feature => true do
   scenario "can create a project" do
     visit '/'
     click_link 'New Project'
@@ -9,4 +9,4 @@ feature 'Creating Projects' do
     click_button 'Create Project'
     page.should have_content('Project has been created.')
   end
- end
+end
