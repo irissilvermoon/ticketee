@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Viewing Tickets" do
   before do
     textmate_2 = Factory(:project, :name => "TextMate 2")
-    Factory(:ticket,
+    @shiny_ticket = Factory(:ticket,
             :project => textmate_2,
             :title => "Make it shiny!",
             :description => "Gradients! Starbursts! Oh My!")
@@ -27,6 +27,6 @@ feature "Viewing Tickets" do
       page.should have_content("Make it shiny!")
     end
 
-    page.should have_content("Gradients! Starbursts! Oh my!")
+    page.should have_content(@shiny_ticket.description)
   end
 end
