@@ -1,11 +1,10 @@
 Ticketee::Application.routes.draw do
+
+  get "/admin/users/index"
+
   devise_for :users
 
   root :to => "projects#index"
-end
-
-Ticketee::Application.routes.draw do
-  devise_for :users
 
   resources :projects do
     resources :tickets
