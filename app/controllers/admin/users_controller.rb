@@ -47,6 +47,7 @@ class Admin::UsersController < Admin::BaseController
       @user.destroy
       flash[:notice] = "User has been deleted."
     end
+    
     redirect_to admin_users_path
   end
 
