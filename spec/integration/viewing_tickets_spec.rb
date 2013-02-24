@@ -12,6 +12,7 @@ feature "Viewing Tickets" do
                             :description => "Gradients! Starbursts! Oh My!")
      @shiny_ticket.update_attribute(:user, user)
 
+    
     internet_explorer = Factory(:project, :name => "Internet Explorer")
     define_permission!(user, "view", internet_explorer)
     Factory(:ticket,
