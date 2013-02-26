@@ -5,7 +5,9 @@ Ticketee::Application.routes.draw do
 
   namespace :admin do
     root :to => "base#index"
-    resources :users
+    resources :users do
+      resources :permissions
+    end
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
@@ -22,6 +24,10 @@ Ticketee::Application.routes.draw do
   resources :projects do
     resources :tickets
   end
+
+  put '/admin/users/:user_id/permissions',
+      :to => 'admin/permissions#update',
+      :as => :update_user_permissions
 end
   # The priority is based upon order of creation:
   # first created -> highest priority.
