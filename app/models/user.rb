@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     "#{email} (#{admin? ? "Admin" : "User"})"
   end
 
+  has_many :permissions
+
   # :password_confirmation, :remember_me
   # attr_accessible :title, :body
 end
