@@ -12,8 +12,8 @@ class Admin::PermissionsController < Admin::BaseController
       project = Project.find(id)
       permissions.each do |permission, checked|
         Permission.create!(:user => @user,
-                         :thing => project,
-                         :action => permission)
+                           :thing => project,
+                           :action => permission)
       end
     end
 

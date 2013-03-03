@@ -41,6 +41,10 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.7)
       ffi (~> 1.0, >= 1.0.6)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -81,6 +85,11 @@ GEM
     multi_json (1.5.0)
     nokogiri (1.5.6)
     orm_adapter (0.0.7)
+    paperclip (2.7.0)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -171,6 +180,7 @@ DEPENDENCIES
   email_spec (= 1.2.1)
   factory_girl (= 2.6.4)
   jquery-rails
+  paperclip (= 2.7.0)
   pry
   rails (= 3.2.11)
   rspec-rails (~> 2.11)
