@@ -4,7 +4,7 @@ describe TicketsController do
   let(:user) { Factory(:confirmed_user) }
   let(:project) { Factory(:project) } 
   let(:ticket) { Factory(:ticket, :project => project,
-                                   :user => user) }
+                                  :user => user) }
 
   context "standard users" do
     it "cannot access a ticket for a project" do
