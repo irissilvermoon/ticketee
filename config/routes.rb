@@ -13,17 +13,21 @@ Ticketee::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :files
-  
+
   get '/awaiting_confirmation',
     :to => "users#confirmation",
     :as => 'confirm_user'
 
-  
+
 
   root :to => "projects#index"
 
   resources :projects do
     resources :tickets
+  end
+
+  resources :tickets do
+    resources :comments
   end
 
   put '/admin/users/:user_id/permissions',

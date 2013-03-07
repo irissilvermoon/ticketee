@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 
-  
+
   before_filter :authenticate_user!
   before_filter :find_project
   before_filter :find_ticket, :only => [:show, :edit, :update, :destroy]
@@ -26,11 +26,11 @@ class TicketsController < ApplicationController
   end
 
   def show
-    
+    @comment = @ticket.comments.build
   end
 
   def edit
-    
+
   end
 
   def update
