@@ -1,10 +1,23 @@
 <div id='ticket'>
   <h2><%= @ticket.title %><h2>
   <span id='author'><small>Created by <%= @ticket.user.email %></small></span>
-  <%= render @ticket.state if @ticket.state %>
-  <%= simple_format(@ticket.description) %>
-  <% if @ticket.assets.exists? %>
-    <h3>Attached Files</h3>
+
+  <% authorized?("edit tickets", @project) do %>
+    <%= link_to "Edit Ticket", [:edit, @project, @ticket] %>
+  <% end %>
+
+  <% authorized?("delete tickets", @project) do %>
+     <%= link_to "Delete Ticket",
+              project_ticket_path(@project, @ticket),
+              :method => :delete,
+              :confirm => "Are you sure you want to delete this ticket?" %>
+   <% end %>
+
+<%= render @ticket.state if @ticket.state %>
+<%= simple_format(@ticket.description) %>
+
+<% if @ticket.assets.exists? %>
+  <h3>Attached Files</h3>
     <div class="assets">
       <% @ticket.assets.each do |asset| %>
         <p>
@@ -19,19 +32,8 @@
     </div>
   <% end %>
 
-  <% authorized?("edit tickets", @project) do %>
-    <%= link_to "Edit Ticket", [:edit, @project, @ticket] %>
-  <% end %>
-
-  <% authorized?("delete tickets", @project) do %>
-     <%= link_to "Delete Ticket",
-              project_ticket_path(@project, @ticket),
-              :method => :delete,
-              :confirm => "Are you sure you want to delete this ticket?" %>
-   <% end %>
-
-  <%= simple_format(@ticket.description) %>
 </div>
+
 <h3>Comments</h3>
 <div id='comments'>
   <% if @ticket.comments.exists? %>
@@ -40,5 +42,6 @@
     There are no comments for this ticket.
   <% end %>
 </div>
+
 <%= render "comments/form" %>
 
