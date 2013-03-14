@@ -8,8 +8,13 @@ module CapybaraHelpers
     page.should(have_css("a", :text => text),
       "Expected to see the #{text.inspect} link, but did not.")
   end
+
+  def state_line_for(state)
+    state = State.find_by_name!(state)
+    "#state_#{state.id}"
+  end
 end
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.include CapybaraHelpers, :type => :request
 end
