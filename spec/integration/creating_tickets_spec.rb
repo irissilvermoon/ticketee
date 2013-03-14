@@ -47,7 +47,6 @@ feature "Creating Tickets" do
     attach_file "File #2", File.expand_path("spec/fixtures/spin.txt")
     click_button "Create Ticket"
     page.should have_content("Ticket has been created.")
-    # binding.pry
     within("#ticket .assets") do
       page.should have_content("speed.txt")
       page.should have_content("spin.txt")

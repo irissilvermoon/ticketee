@@ -40,14 +40,15 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.11'
-  gem 'pry'
+  gem 'pry-rails'
+  gem 'jazz_hands'
 end
+
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl', '2.6.4'
   gem 'email_spec', '1.2.1'
   gem 'database_cleaner', '0.7.2'
-  gem 'launchy'
 end
 
 gem 'devise', '2.1.0.rc'
