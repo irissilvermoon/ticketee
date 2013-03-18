@@ -13,6 +13,10 @@ class ProjectsController < ApplicationController
     @projects = Project.for(current_user).all
   end
 
+  def show
+    @tickets = @project.tickets
+  end
+
   def new
     @project = Project.new
   end
