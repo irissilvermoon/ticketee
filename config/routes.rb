@@ -8,6 +8,7 @@ Ticketee::Application.routes.draw do
     resources :users do
       resources :permissions
     end
+
     resources :states do
       member do
         get :make_default
@@ -33,6 +34,11 @@ Ticketee::Application.routes.draw do
 
   resources :tickets do
     resources :comments
+    resources :tags do
+      member do
+        delete :remove
+      end
+    end
   end
 
   put '/admin/users/:user_id/permissions',
