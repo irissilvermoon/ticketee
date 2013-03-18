@@ -14,8 +14,13 @@ class TicketsController < ApplicationController
   end
 
   def create
+    if cannot?(:tag, @project)
+      params[:ticket].delete(:tag_names)
+    end
+
     @ticket = @project.tickets.build(params[:ticket])
     @ticket.user = current_user
+
     if @ticket.save
       flash[:notice] = "Ticket has been created."
       redirect_to [@project, @ticket]

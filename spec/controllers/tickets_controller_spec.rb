@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TicketsController do
   let(:user) { Factory(:confirmed_user) }
-  let(:project) { Factory(:project) } 
+  let(:project) { Factory(:project) }
   let(:ticket) { Factory(:ticket, :project => project,
                                   :user => user) }
 
@@ -18,7 +18,7 @@ describe TicketsController do
 
 
   context "with permission to view the project" do
-    before do 
+    before do
       sign_in(:user, user)
       define_permission!(user, "view", project)
     end
@@ -39,7 +39,7 @@ describe TicketsController do
       cannot_create_tickets!
     end
 
-    it "cannot create a ticket without permission" do 
+    it "cannot create a ticket without permission" do
       post :create, :project_id => project.id
       cannot_create_tickets!
     end
@@ -62,6 +62,18 @@ describe TicketsController do
       response.should redirect_to(project)
       message = "You cannot delete tickets from this project."
       flash[:alert].should eql(message)
+    end
+
+    it "can create tickets, but not tag them" do
+      Permission.create(:user => user,
+                        :thing => project,
+                        :action => "create tickets")
+      post :create, :ticket => { :title => "New Ticket!",
+                                 :description => "brand spankin new",
+                                 :tag_names => "these are tags"
+                                 },
+                                 :project_id => project.id
+      Ticket.last.tags.should be_empty
     end
   end
 end

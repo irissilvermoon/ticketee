@@ -27,4 +27,21 @@ describe CommentsController do
       ticket.state.should eql(nil)
     end
   end
+
+  context 'A user without permission to tag a ticket' do
+    before do
+      sign_in(:user, user)
+    end
+
+    it "cannot tag a ticket when creating a comment" do
+      post :create, { :comment => {
+                        :text => "Tag!",
+                        :tag_names => "One two"
+                      },
+                        :ticket_id => ticket.id
+                    }
+      ticket.reload
+      ticket.tags.should be_empty
+    end
+  end
 end
