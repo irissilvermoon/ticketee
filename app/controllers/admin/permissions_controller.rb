@@ -8,7 +8,7 @@ class Admin::PermissionsController < Admin::BaseController
 
   def update
     @user.permissions.clear
-    params[:permissions].each do |id, permissions|
+    params[:permissions] && params[:permissions].each do |id, permissions|
       project = Project.find(id)
       permissions.each do |permission, checked|
         Permission.create!(:user => @user,
@@ -19,6 +19,7 @@ class Admin::PermissionsController < Admin::BaseController
 
   flash[:notice] = "Permissions updated."
   redirect_to admin_user_permissions_path
+
   end
 
 
@@ -26,5 +27,5 @@ class Admin::PermissionsController < Admin::BaseController
 
   def find_user
     @user = User.find(params[:user_id])
-  end    
+  end
 end
