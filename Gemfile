@@ -1,6 +1,6 @@
   source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '~> 3.2.11'
 gem 'dynamic_form', '1.1.4'
 
 # Bundle edge Rails instead:
@@ -49,6 +49,7 @@ group :test do
   gem 'factory_girl', '2.6.4'
   gem 'email_spec', '1.2.1'
   gem 'database_cleaner', '0.7.2'
+  gem 'simplecov', :require => false
 end
 
 gem 'devise', '2.1.0.rc'
