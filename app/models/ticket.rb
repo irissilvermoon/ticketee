@@ -21,8 +21,11 @@ class Ticket < ActiveRecord::Base
   has_many :comments
 
   has_and_belongs_to_many :tags
+  has_and_belongs_to_many :watchers, :join_table => "ticket_watchers",
+                                     :class_name => "User"
 
   before_create :associate_tags
+  after_create :creator_watches_me
 
   private
 
@@ -31,6 +34,12 @@ class Ticket < ActiveRecord::Base
       tag_names.split(" ").each do |name|
         self.tags << Tag.find_or_create_by_name(name)
       end
+    end
+  end
+
+  def creator_watches_me
+    if user
+      self.watchers << user unless self.watchers.include?(user)
     end
   end
 end

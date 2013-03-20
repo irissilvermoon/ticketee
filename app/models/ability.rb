@@ -11,8 +11,5 @@ class Ability
       end
     end
   end
-
-  def awieurhiauwe
-    puts 'woerouhwoe'
-  end
 end
+
