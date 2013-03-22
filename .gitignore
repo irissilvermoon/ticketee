@@ -16,3 +16,4 @@
 /log/*.log
 /tmp
 a/public/system
+config/initializers/mail.rb

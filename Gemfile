@@ -42,6 +42,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.11'
   gem 'pry-rails'
   gem 'jazz_hands'
+  gem 'gmail', "0.4.0"
 end
 
 group :test do
