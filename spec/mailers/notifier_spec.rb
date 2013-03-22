@@ -25,5 +25,10 @@ describe Notifier do
       email.body.should include("#{comment.user.email} wrote:")
       email.body.should include(comment.text)
     end
+
+    it "correctly sets the Reply-To" do
+      address = "youraccount+#{project.id}+#{ticket.id}@gmail.com"
+      email.reply_to.should == [address]
+    end
   end
 end
